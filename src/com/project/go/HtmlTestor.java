@@ -8,65 +8,51 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
 import java.io.IOException;
 //*the class HtmlParser and method parser builds a url out of a string input from the Main and goes to
 //*yahoo and pulls up the current price, 52 week low and feeds it to the Operators.operate
 //* for further processing.
 
-public class HtmlParser {
+public class HtmlTestor {
 
     public static void main(String[] args) throws Exception {
-        String trcker = null;
-        parser(trcker); //*calls the method as an object
+
+        parser(); //*calls the method as an object
     }
 
-        public static void parser(String tracker) throws IOException {
+    public static void parser() throws IOException {
         String baseUrl = "http://finance.yahoo.com/quote/";
-        String postfix =  "?ltr=1";
-        String url = baseUrl + tracker + postfix;
-        Document doc = Jsoup.connect(url).timeout(10*1000).get(); //*this gets the yahoo finance page for Apple
+        String postfix = "?ltr=1";
+        String url = baseUrl + "AAPL" + postfix;
+        Document doc = Jsoup.connect(url).timeout(10 * 1000).get(); //*this gets the yahoo finance page for Apple
 
         Elements tables = doc.select("table"); //*table and tables is unused for this method.
         Element table = null;
-        Elements spans = doc.select("span");//*gets the span elements from the website.
-        Element span = null;
+        Elements div = doc.select("div [class = D(ib) Fw(200) Mend(20px)]");
+        Element divs = null;//*gets the span elements from the website.
         Elements rows = doc.select("td");//*gets the td element from the website.
         Element row = null;
         String sprice = ""; //*sprice or string price is the current price in string form that needs to be converted
         String slow = ""; //* slow or string low is the range of the 52 week low (i.e. 45.11-56.45) that needs to be truncated and converted to a number
 
-            if (spans.hasAttr("data-reactid")) {//*this code gets the current price on yahoo.com
-                span = spans.get(14);
-                sprice = span.text();
+       sprice = div.select("span").first().text();
+                System.out.println(sprice);
 
-            }
 
-        if(rows.hasClass("Ta(end) Fw(b)")){//*this code gets the 52 week range on yahoo.com
+
+
+        if (rows.hasClass("Ta(end) Fw(b)")) {//*this code gets the 52 week range on yahoo.com
             row = rows.get(13);
-            slow =row.text();
+            slow = row.text();
+            System.out.println(slow);
         }
-            double price= 0;
-            try {
-                price = Double.parseDouble(sprice);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-                System.out.println("this is the error tracker: " + tracker);
-            }
-            //*this code converts the current price from string to double to be processed in operators.
-            String cutoff = slow.substring(0, Math.min(slow.length(), 5)); //*this code truncates the 52 week range to just a few values stores it in var
-            double low=Double.parseDouble(cutoff); //*this code converts cutoff to a number
-            Operators.operate(price,low, tracker);
-
-
-
-
-
 
 
     }
-
-
 }
+
+
 
 
 

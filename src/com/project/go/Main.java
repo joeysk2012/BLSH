@@ -3,6 +3,7 @@ package com.project.go;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -33,36 +34,11 @@ public class Main {
         switch (b) {
             case "A":
                 System.out.println("Pulling up All");
-                HtmlParser.parser("MMM");
-                HtmlParser.parser("AXP");
-                HtmlParser.parser("AAPL");
-                HtmlParser.parser("BA");
-                HtmlParser.parser("CAT");
-                HtmlParser.parser("CVX");
-                HtmlParser.parser("CSCO");
-                HtmlParser.parser("KO");
-                HtmlParser.parser("DIS");
-                HtmlParser.parser("DD");
-                HtmlParser.parser("XOM");
-                HtmlParser.parser("GE");
-                HtmlParser.parser("GS");
-                HtmlParser.parser("HD");
-                HtmlParser.parser("IBM");
-                HtmlParser.parser("INTC");
-                HtmlParser.parser("JNJ");
-                HtmlParser.parser("JPM");
-                HtmlParser.parser("MCD");
-                HtmlParser.parser("MRK");
-                HtmlParser.parser("MSFT");
-                HtmlParser.parser("NKE");
-                HtmlParser.parser("PFE");
-                HtmlParser.parser("PG");
-                HtmlParser.parser("TRV");
-                HtmlParser.parser("UTX");
-                HtmlParser.parser("UNH");
-                HtmlParser.parser("VZ");
-                HtmlParser.parser("V");
-                HtmlParser.parser("WMT");
+                String [] sym = Wikiparser.getSymbols();
+                for (int i = 1 ; i <506 ; i++){
+                    String x = sym[i];
+                    HtmlParser.parser(x);
+                }
 
                 break;
             case "C":

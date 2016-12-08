@@ -1,6 +1,8 @@
 # BLSH
 
 12/2/2016
+
+
 A fundamental rule of making gains in the stock market is to buy stock when it's low in value and sell at a later date when
 it is higher in value. This java program pulls stock market data from finance.yahoo.com and parses it and makes calculatins on it.
 Most notably, it takes the 52 week low of a certain stock tracker and compares that against the current price. 

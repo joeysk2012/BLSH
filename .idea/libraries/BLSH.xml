@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="BLSH">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/BLSH2_jar/BLSH.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

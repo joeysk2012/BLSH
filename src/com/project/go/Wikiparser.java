@@ -19,10 +19,19 @@ public class Wikiparser {
 
     public static void main(String[] args) throws Exception {
         String dummy = null;
-        getSymbols(); //*calls the method as an object
+        getAllSymbols(); //*calls the method as an object
+        getDSymbols();
+        getSSymbols();
+        getESymbols();
+        getFSymbols();
+        getHSymbols();
+        getISymbols();
+        getRSymbols();
+        getTSymbols();
+        getUSymbols();
     }
 
-        public static String [] getSymbols() throws IOException {
+        public static String [] getAllSymbols() throws IOException {
 
         Document doc = Jsoup.connect("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies").timeout(10*1000).get(); //*this gets the wiki page for SP500
         Elements rows = doc.select("tr");//*gets the span elements from the website.
@@ -39,14 +48,223 @@ public class Wikiparser {
            }
            return (symbols);
            //*System.out.println(Arrays.toString(symbols));
-
-
-
-
         }
 
+        public static String[] getDSymbols() throws IOException {
 
+        Document doc = Jsoup.connect("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies").timeout(10*1000).get(); //*this gets the wiki page for SP500
+        Elements rows = doc.select("tr");//*gets the span elements from the website.
+        Element row = null;
+        String [] symbols = new String[506];
+
+        for(int i=1; i<506; i++ ){
+            row = rows.get(i).child(3);
+            String x = row.text();
+            if (x.equals("Consumer Discretionary")){
+                row = rows.get(i).child(0);
+                String y =row.text();
+                symbols[i] = y ;
+            }
+        }
+            symbols = Arrays.stream(symbols)
+                .filter(s -> (s != null && s.length() > 0))
+                .toArray(String[]::new);
+        return (symbols);
+    }
+    public static String[] getDymbols() throws IOException {
+
+        Document doc = Jsoup.connect("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies").timeout(10*1000).get(); //*this gets the wiki page for SP500
+        Elements rows = doc.select("tr");//*gets the span elements from the website.
+        Element row = null;
+        String [] symbols = new String[506];
+
+        for(int i=1; i<506; i++ ){
+            row = rows.get(i).child(3);
+            String x = row.text();
+            if (x.equals("Consumer Discretionary")){
+                row = rows.get(i).child(0);
+                String y =row.text();
+                symbols[i] = y ;
+            }
+        }
+        symbols = Arrays.stream(symbols)
+                .filter(s -> (s != null && s.length() > 0))
+                .toArray(String[]::new);
+        return (symbols);
+    }
+    public static String[] getSSymbols() throws IOException {
+
+        Document doc = Jsoup.connect("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies").timeout(10*1000).get(); //*this gets the wiki page for SP500
+        Elements rows = doc.select("tr");//*gets the span elements from the website.
+        Element row = null;
+        String [] symbols = new String[506];
+
+        for(int i=1; i<506; i++ ){
+            row = rows.get(i).child(3);
+            String x = row.text();
+            if (x.equals("Consumer Staples")){
+                row = rows.get(i).child(0);
+                String y =row.text();
+                symbols[i] = y ;
+            }
+        }
+        symbols = Arrays.stream(symbols)
+                .filter(s -> (s != null && s.length() > 0))
+                .toArray(String[]::new);
+        return (symbols);
 }
+    public static String[] getESymbols() throws IOException {
+
+        Document doc = Jsoup.connect("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies").timeout(10*1000).get(); //*this gets the wiki page for SP500
+        Elements rows = doc.select("tr");//*gets the span elements from the website.
+        Element row = null;
+        String [] symbols = new String[506];
+
+        for(int i=1; i<506; i++ ){
+            row = rows.get(i).child(3);
+            String x = row.text();
+            if (x.equals("Energy")){
+                row = rows.get(i).child(0);
+                String y =row.text();
+                symbols[i] = y ;
+            }
+        }
+        symbols = Arrays.stream(symbols)
+                .filter(s -> (s != null && s.length() > 0))
+                .toArray(String[]::new);
+        return (symbols);
+    }
+    public static String[] getFSymbols() throws IOException {
+
+        Document doc = Jsoup.connect("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies").timeout(10*1000).get(); //*this gets the wiki page for SP500
+        Elements rows = doc.select("tr");//*gets the span elements from the website.
+        Element row = null;
+        String [] symbols = new String[506];
+
+        for(int i=1; i<506; i++ ){
+            row = rows.get(i).child(3);
+            String x = row.text();
+            if (x.equals("Financials")){
+                row = rows.get(i).child(0);
+                String y =row.text();
+                symbols[i] = y ;
+            }
+        }
+        symbols = Arrays.stream(symbols)
+                .filter(s -> (s != null && s.length() > 0))
+                .toArray(String[]::new);
+        return (symbols);
+    }
+    public static String[] getHSymbols() throws IOException {
+
+        Document doc = Jsoup.connect("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies").timeout(10*1000).get(); //*this gets the wiki page for SP500
+        Elements rows = doc.select("tr");//*gets the span elements from the website.
+        Element row = null;
+        String [] symbols = new String[506];
+
+        for(int i=1; i<506; i++ ){
+            row = rows.get(i).child(3);
+            String x = row.text();
+            if (x.equals("Health Care")){
+                row = rows.get(i).child(0);
+                String y =row.text();
+                symbols[i] = y ;
+            }
+        }
+        symbols = Arrays.stream(symbols)
+                .filter(s -> (s != null && s.length() > 0))
+                .toArray(String[]::new);
+        return (symbols);
+    }
+    public static String[] getISymbols() throws IOException {
+
+        Document doc = Jsoup.connect("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies").timeout(10*1000).get(); //*this gets the wiki page for SP500
+        Elements rows = doc.select("tr");//*gets the span elements from the website.
+        Element row = null;
+        String [] symbols = new String[506];
+
+        for(int i=1; i<506; i++ ){
+            row = rows.get(i).child(3);
+            String x = row.text();
+            if (x.equals("Industrial")){
+                row = rows.get(i).child(0);
+                String y =row.text();
+                symbols[i] = y ;
+            }
+        }
+        symbols = Arrays.stream(symbols)
+                .filter(s -> (s != null && s.length() > 0))
+                .toArray(String[]::new);
+        return (symbols);
+    }
+    public static String[] getRSymbols() throws IOException {
+
+        Document doc = Jsoup.connect("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies").timeout(10*1000).get(); //*this gets the wiki page for SP500
+        Elements rows = doc.select("tr");//*gets the span elements from the website.
+        Element row = null;
+        String [] symbols = new String[506];
+
+        for(int i=1; i<506; i++ ){
+            row = rows.get(i).child(3);
+            String x = row.text();
+            if (x.equals("Real Estate")){
+                row = rows.get(i).child(0);
+                String y =row.text();
+                symbols[i] = y ;
+            }
+        }
+        symbols = Arrays.stream(symbols)
+                .filter(s -> (s != null && s.length() > 0))
+                .toArray(String[]::new);
+        return (symbols);
+    }
+    public static String[] getTSymbols() throws IOException {
+
+        Document doc = Jsoup.connect("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies").timeout(10*1000).get(); //*this gets the wiki page for SP500
+        Elements rows = doc.select("tr");//*gets the span elements from the website.
+        Element row = null;
+        String [] symbols = new String[506];
+
+        for(int i=1; i<506; i++ ){
+            row = rows.get(i).child(3);
+            String x = row.text();
+            if (x.equals("Information Technology")){
+                row = rows.get(i).child(0);
+                String y =row.text();
+                symbols[i] = y ;
+            }
+        }
+        symbols = Arrays.stream(symbols)
+                .filter(s -> (s != null && s.length() > 0))
+                .toArray(String[]::new);
+        return (symbols);
+    }
+    public static String[] getUSymbols() throws IOException {
+
+        Document doc = Jsoup.connect("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies").timeout(10*1000).get(); //*this gets the wiki page for SP500
+        Elements rows = doc.select("tr");//*gets the span elements from the website.
+        Element row = null;
+        String [] symbols = new String[506];
+
+        for(int i=1; i<506; i++ ){
+            row = rows.get(i).child(3);
+            String x = row.text();
+            if (x.equals("Utilities")){
+                row = rows.get(i).child(0);
+                String y =row.text();
+                symbols[i] = y ;
+            }
+        }
+        symbols = Arrays.stream(symbols)
+                .filter(s -> (s != null && s.length() > 0))
+                .toArray(String[]::new);
+        return (symbols);
+    }
+}
+
+
+
+
 
 
 

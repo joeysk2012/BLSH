@@ -10,9 +10,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-//*the class HtmlParser and method parser builds a url out of a string input from the Main and goes to
-//*yahoo and pulls up the current price, 52 week low and feeds it to the Operators.operate
-//* for further processing.
+//*this class is for testing code that's to be used for the htmlParser.
 
 public class HtmlTestor {
 
@@ -24,7 +22,7 @@ public class HtmlTestor {
     public static void parser() throws IOException {
         String baseUrl = "http://finance.yahoo.com/quote/";
         String postfix = "?ltr=1";
-        String url = baseUrl + "AAPL" + postfix;
+        String url = baseUrl + "HBAN" + postfix;
         Document doc = Jsoup.connect(url).timeout(10 * 1000).get(); //*this gets the yahoo finance page for Apple
 
         Elements tables = doc.select("table"); //*table and tables is unused for this method.
@@ -35,8 +33,13 @@ public class HtmlTestor {
         Element row = null;
         String sprice = ""; //*sprice or string price is the current price in string form that needs to be converted
         String slow = ""; //* slow or string low is the range of the 52 week low (i.e. 45.11-56.45) that needs to be truncated and converted to a number
+        Elements name = doc.select("div [class = D(ib) ]");
+        String company ="";
 
-       sprice = div.select("span").first().text();
+        company = name.first().text();
+        System.out.println(company);
+
+       sprice = div.select("span").get(0).text();
                 System.out.println(sprice);
 
 
@@ -97,4 +100,4 @@ public class HtmlTestor {
 //*Element row = table.select("tr").get(5);
 
 //*final String number = row.select("td").text();
-//*System.out.println(number);
+//*System.out.println(number);h

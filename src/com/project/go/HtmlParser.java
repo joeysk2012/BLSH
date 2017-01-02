@@ -16,46 +16,56 @@ import java.io.IOException;
 public class HtmlParser {
 
     public static void main(String[] args) throws Exception {
-        String trcker = null;
+        String trcker = null; //*dummy variable
         parser(trcker); //*calls the method as an object
     }
 
         public static void parser(String tracker) throws IOException {
+        String info = "";
         String baseUrl = "http://finance.yahoo.com/quote/";
         String postfix =  "?ltr=1";
-        String url = baseUrl + tracker + postfix;
+        String url = baseUrl + tracker + postfix;  //*concatinates the url
         Document doc = Jsoup.connect(url).timeout(10*1000).get(); //*this gets the yahoo finance page for Apple
 
-        Elements tables = doc.select("table"); //*table and tables is unused for this method.
-        Element table = null;
-        Elements spans = doc.select("span");//*gets the span elements from the website.
-        Element span = null;
+
+        Elements div = doc.select("div [class = D(ib) Fw(200) Mend(20px)]"); //*selects a stable div who is a parent of the span w/current price.
         Elements rows = doc.select("td");//*gets the td element from the website.
         Element row = null;
         String sprice = ""; //*sprice or string price is the current price in string form that needs to be converted
         String slow = ""; //* slow or string low is the range of the 52 week low (i.e. 45.11-56.45) that needs to be truncated and converted to a number
+        double price= 0;
+        Elements name = doc.select("div [class = D(ib) ]");
+        String company ="";
+        int numtries = 5;
 
-            if (spans.hasAttr("data-reactid")) {//*this code gets the current price on yahoo.com
-                span = spans.get(14);
-                sprice = span.text();
 
-            }
+
+        while(numtries-- !=0)
+       try {
+           company = name.first().text();
+
+           sprice = div.select("span").first().text();//*this code gets the current price on yahoo.com
 
         if(rows.hasClass("Ta(end) Fw(b)")){//*this code gets the 52 week range on yahoo.com
             row = rows.get(13);
             slow =row.text();
+
         }
-            double price= 0;
-            try {
-                price = Double.parseDouble(sprice);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-                System.out.println("this is the error tracker: " + tracker);
+
+           price = Double.parseDouble(sprice); //*this code converts the current price from string to double to be processed in operators.
+           String cutoff = slow.substring(0, Math.min(slow.length(), 5)); //*this code truncates the 52 week range to just a few values stores it in var
+           double low=Double.parseDouble(cutoff); //*this code converts cutoff to a number
+           Operators.operate(price,low, company);
+
+
+           break;
+            } catch (Exception e) {
+
+           System.out.println("error in calling: " + tracker + " recovering...");
+           continue;
+
             }
-            //*this code converts the current price from string to double to be processed in operators.
-            String cutoff = slow.substring(0, Math.min(slow.length(), 5)); //*this code truncates the 52 week range to just a few values stores it in var
-            double low=Double.parseDouble(cutoff); //*this code converts cutoff to a number
-            Operators.operate(price,low, tracker);
+
 
 
 

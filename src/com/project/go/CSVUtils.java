@@ -21,7 +21,7 @@ public class CSVUtils {
 
         String result = value;
         if (result.contains("\"")) {
-            result = result.replace("\"", "\"\"");
+            result = result.replace("\"", "\"");
         }
         return result;
 

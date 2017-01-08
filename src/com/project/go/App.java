@@ -108,7 +108,7 @@ public class App extends Application { //all that excess at the end is used to c
                     String x = sym[i];
                     HtmlParser.parser(x);
                 }
-                return PasstoApp.ssb.toString();
+                return PasstoGui.ssb.toString();
 
 
             case "Consumer Discretionary (D)":
@@ -118,7 +118,7 @@ public class App extends Application { //all that excess at the end is used to c
                     String x = sym1[i];
                     HtmlParser.parser(x);
                 }
-                return PasstoApp.ssb.toString();
+                return PasstoGui.ssb.toString();
 
 
             case "Consumer Staples (S)":
@@ -128,7 +128,7 @@ public class App extends Application { //all that excess at the end is used to c
                     String x = sym2[i];
                     HtmlParser.parser(x);
                 }
-                return PasstoApp.ssb.toString();
+                return PasstoGui.ssb.toString();
 
 
             case "Energy (E)":
@@ -138,7 +138,7 @@ public class App extends Application { //all that excess at the end is used to c
                     String x = sym3[i];
                     HtmlParser.parser(x);
                 }
-                return PasstoApp.ssb.toString();
+                return PasstoGui.ssb.toString();
 
             case "Financial (F)":
                 System.out.println("Pulling up Financial");
@@ -147,7 +147,7 @@ public class App extends Application { //all that excess at the end is used to c
                     String x = sym4[i];
                     HtmlParser.parser(x);
                 }
-                return PasstoApp.ssb.toString();
+                return PasstoGui.ssb.toString();
 
             case "Healthcare (H)":
                 System.out.println("Pulling up Health Care");
@@ -156,7 +156,7 @@ public class App extends Application { //all that excess at the end is used to c
                     String x = sym5[i];
                     HtmlParser.parser(x);
                 }
-                return PasstoApp.ssb.toString();
+                return PasstoGui.ssb.toString();
 
             case "Industrial (I)":
                 System.out.println("Pulling up Industrial");
@@ -165,7 +165,7 @@ public class App extends Application { //all that excess at the end is used to c
                     String x = sym6[i];
                     HtmlParser.parser(x);
                 }
-                return PasstoApp.ssb.toString();
+                return PasstoGui.ssb.toString();
 
             case "Real Estate (R)":
                 System.out.println("Pulling up Real Estate");
@@ -174,7 +174,7 @@ public class App extends Application { //all that excess at the end is used to c
                     String x = sym7[i];
                     HtmlParser.parser(x);
                 }
-                return PasstoApp.ssb.toString();
+                return PasstoGui.ssb.toString();
 
             case "Info. Tech. (T)":
                 System.out.println("Pulling up Information Technology");
@@ -183,7 +183,7 @@ public class App extends Application { //all that excess at the end is used to c
                     String x = sym8[i];
                     HtmlParser.parser(x);
                 }
-                return PasstoApp.ssb.toString();
+                return PasstoGui.ssb.toString();
 
 
             case "Utilities (U)":
@@ -193,11 +193,11 @@ public class App extends Application { //all that excess at the end is used to c
                     String x = sym9[i];
                     HtmlParser.parser(x);
                 }
-                return PasstoApp.ssb.toString();
+                return PasstoGui.ssb.toString();
 
             default: System.out.println("not a valid sector");
                 //*this is an error message you get when you input a wrong sector.
-                return PasstoApp.ssb.toString();
+                return PasstoGui.ssb.toString();
 
         }
 

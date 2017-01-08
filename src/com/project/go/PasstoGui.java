@@ -3,9 +3,12 @@ package com.project.go;
 import java.lang.reflect.Array;
 
 /**
- * Created by Morgan on 12/27/2016.
+ * Created by Joe  on 12/27/2016.
  */
-public class PasstoApp {
+
+//*this class has the method superString brings in strings from the result of Operators class and makes a
+// concatenated string to be passed to the GUI
+public class PasstoGui {
 
 
     static StringBuilder ssb;

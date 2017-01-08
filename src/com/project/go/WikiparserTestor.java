@@ -13,9 +13,9 @@ import java.util.Arrays;
 import java.util.Collections;
 
 
-//*the class HtmlParser and method parser builds a url out of a string input from the Main and goes to
-//*yahoo and pulls up the current price, 52 week low and feeds it to the Operators.operate
-//* for further processing.
+//*This is a dummy class I used to test functionalities of the Wikipeida parser.
+//*
+//*
 
 public class WikiparserTestor {
 

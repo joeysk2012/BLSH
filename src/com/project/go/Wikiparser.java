@@ -11,14 +11,13 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.Arrays;
-//*the class HtmlParser and method parser builds a url out of a string input from the Main and goes to
-//*yahoo and pulls up the current price, 52 week low and feeds it to the Operators.operate
-//* for further processing.
+//*The class Wikiparser goes to https://en.wikipedia.org/wiki/List_of_S%26P_500_companies and picks out all
+//*the tracker symbols from the table using JSOUP. There are 10 different methods each corresponding to the
+//*markets sectors in the S&P that extracts Tracker symbols by the sector the company is in.
 
 public class Wikiparser {
 
     public static void main(String[] args) throws Exception {
-        String dummy = null;
         getAllSymbols(); //*calls the method as an object
         getDSymbols();
         getSSymbols();
@@ -35,10 +34,8 @@ public class Wikiparser {
 
         Document doc = Jsoup.connect("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies").timeout(10*1000).get(); //*this gets the wiki page for SP500
         Elements rows = doc.select("tr");//*gets the span elements from the website.
-        Element row = null;
-        Elements datas = doc.select("td");//*gets the td element from the website.
-        Element data = null;
-        String [] symbols = new String[506];
+        Element row = null; //*from those elements pick one row and store it in this variable.
+        String [] symbols = new String[506]; //this array and next for loop gets all sybmols from the wikipeida page.
 
            for(int i=1; i<506; i++ ){
               row = rows.get(i).child(0);
@@ -57,16 +54,16 @@ public class Wikiparser {
         Element row = null;
         String [] symbols = new String[506];
 
-        for(int i=1; i<506; i++ ){
+        for(int i=1; i<506; i++ ){ //This array and next for loop gets all sybmols from the wikipeida page.
             row = rows.get(i).child(3);
             String x = row.text();
-            if (x.equals("Consumer Discretionary")){
+            if (x.equals("Consumer Discretionary")){ //we need to filter those symbols without this condition
                 row = rows.get(i).child(0);
                 String y =row.text();
                 symbols[i] = y ;
             }
         }
-            symbols = Arrays.stream(symbols)
+            symbols = Arrays.stream(symbols) //removes null values from the string of arrays.
                 .filter(s -> (s != null && s.length() > 0))
                 .toArray(String[]::new);
         return (symbols);

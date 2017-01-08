@@ -10,7 +10,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-//*this class is for testing code that's to be used for the htmlParser.
+//*this is a dummy class i used to run trial and error on htmlparser when I was writing it.
 
 public class HtmlTestor {
 

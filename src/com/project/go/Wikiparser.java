@@ -44,7 +44,7 @@ public class Wikiparser {
 
            }
            return (symbols);
-           //*System.out.println(Arrays.toString(symbols));
+           //System.out.println(Arrays.toString(symbols));
         }
 
         public static String[] getDSymbols() throws IOException {

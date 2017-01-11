@@ -10,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -31,6 +32,8 @@ public class App extends Application { //all that excess at the end is used to c
     Scene scene, scene1;
     TextArea area;
     static String appText;
+    static ProgressBar pb;
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -45,6 +48,7 @@ public class App extends Application { //all that excess at the end is used to c
         Text centertext = new Text("Welcome To BLSH, press Run to get today's report");
         buttonRun = new Button("Run");//instantiate the button
         buttonExit = new Button("Exit");//instantiate the button
+        ProgressBar pb = new ProgressBar(0);//instantiate the progress bar
 
         //this is a lambda function that is treated like an event handler
         //but with much less code
@@ -58,7 +62,7 @@ public class App extends Application { //all that excess at the end is used to c
 
         //set layout 1
         HBox bottom = new HBox();
-        bottom.getChildren().addAll(choiceBox, buttonRun, buttonExit);//positions button in the middle
+        bottom.getChildren().addAll(choiceBox, buttonRun, buttonExit, pb);//positions button in the middle
         BorderPane layout = new BorderPane(); // you need to make a layout before anything displays,
         layout.setBottom(bottom);
         layout.setTop(centertext);
@@ -107,6 +111,7 @@ public class App extends Application { //all that excess at the end is used to c
                 for (int i = 1 ; i <506 ; i++){
                     String x = sym[i];
                     HtmlParser.parser(x);
+
                 }
                 return PasstoGui.ssb.toString();
 
@@ -199,16 +204,17 @@ public class App extends Application { //all that excess at the end is used to c
                 //*this is an error message you get when you input a wrong sector.
                 return PasstoGui.ssb.toString();
 
-        }
+        }//end swtich statement
 
 
 
 
-    }
+    }//end getChoice
 
 
 
-    }
+
+    }//end of the class
 
 
 

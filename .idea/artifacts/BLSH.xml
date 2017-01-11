@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="BLSH">
+    <output-path>$PROJECT_DIR$/out/artifacts/BLSH</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="com.project.go.App" />
+        <option name="description" value="Gui for BLSH&#9;`" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="BLSH GUI" />
+        <option name="vendor" value="Joe Kurokawa" />
+        <option name="version" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="BLSH.jar">
+        <element id="module-output" name="BLSH" />
+      </element>
+    </root>
+  </artifact>
+</component>

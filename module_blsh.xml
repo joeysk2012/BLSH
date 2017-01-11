@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_blsh" default="compile.module.blsh">
+  <dirname property="module.blsh.basedir" file="${ant.file.module_blsh}"/>
+  
+  <property name="module.jdk.home.blsh" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.blsh" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.blsh" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.blsh" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="blsh.output.dir" value="${module.blsh.basedir}/out/production/BLSH"/>
+  <property name="blsh.testoutput.dir" value="${module.blsh.basedir}/out/test/BLSH"/>
+  
+  <path id="blsh.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="blsh.module.production.classpath">
+    <path refid="${module.jdk.classpath.blsh}"/>
+    <pathelement location="${basedir}/JARs/htmlflow-1.0.jar"/>
+    <pathelement location="${basedir}/JARs/jsoup-1.10.1.jar"/>
+  </path>
+  
+  <path id="blsh.runtime.production.module.classpath">
+    <pathelement location="${blsh.output.dir}"/>
+    <pathelement location="${basedir}/JARs/htmlflow-1.0.jar"/>
+    <pathelement location="${basedir}/JARs/jsoup-1.10.1.jar"/>
+  </path>
+  
+  <path id="blsh.module.classpath">
+    <path refid="${module.jdk.classpath.blsh}"/>
+    <pathelement location="${blsh.output.dir}"/>
+    <pathelement location="${basedir}/JARs/htmlflow-1.0.jar"/>
+    <pathelement location="${basedir}/JARs/jsoup-1.10.1.jar"/>
+  </path>
+  
+  <path id="blsh.runtime.module.classpath">
+    <pathelement location="${blsh.testoutput.dir}"/>
+    <pathelement location="${blsh.output.dir}"/>
+    <pathelement location="${basedir}/JARs/htmlflow-1.0.jar"/>
+    <pathelement location="${basedir}/JARs/jsoup-1.10.1.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.blsh">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.blsh">
+    <patternset refid="excluded.from.module.blsh"/>
+  </patternset>
+  
+  <path id="blsh.module.sourcepath">
+    <dirset dir="${module.blsh.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.blsh" depends="compile.module.blsh.production,compile.module.blsh.tests" description="Compile module BLSH"/>
+  
+  <target name="compile.module.blsh.production" depends="register.custom.compilers" description="Compile module BLSH; production classes">
+    <mkdir dir="${blsh.output.dir}"/>
+    <javac2 destdir="${blsh.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.blsh}/javac">
+      <compilerarg line="${compiler.args.blsh}"/>
+      <bootclasspath refid="blsh.module.bootclasspath"/>
+      <classpath refid="blsh.module.production.classpath"/>
+      <src refid="blsh.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.blsh"/>
+    </javac2>
+    
+    <copy todir="${blsh.output.dir}">
+      <fileset dir="${module.blsh.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.blsh.tests" depends="register.custom.compilers,compile.module.blsh.production" description="compile module BLSH; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.blsh" description="cleanup module">
+    <delete dir="${blsh.output.dir}"/>
+    <delete dir="${blsh.testoutput.dir}"/>
+  </target>
+</project>
